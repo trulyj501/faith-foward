@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight, BookOpen, Sun, Zap, Play } from 'lucide-react';
 import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import { cn } from './lib/utils';
+import ContentList from './pages/ContentList';
+import ContentDetail from './pages/ContentDetail';
 
 // --- Constants & Data ---
 
@@ -768,8 +770,8 @@ export default function App() {
   const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
-      // Don't scroll to top if a hash is present (like #contact)
-      if (!window.location.hash) {
+      // Don't scroll to top if a hash is present (like #contact) or window is undefined (SSR)
+      if (typeof window !== 'undefined' && !window.location.hash) {
         window.scrollTo(0, 0);
       }
     }, [pathname]);
@@ -799,6 +801,9 @@ export default function App() {
             <Route path="/vision" element={<VisionPage lang={lang} />} />
             <Route path="/projects" element={<ProjectsPage lang={lang} />} />
             <Route path="/insights" element={<InsightsPage lang={lang} />} />
+            {/* Dynamic SSG Content Routes */}
+            <Route path="/:category" element={<ContentList lang={lang} />} />
+            <Route path="/:category/:slug" element={<ContentDetail lang={lang} />} />
           </Routes>
         </AnimatePresence>
       </main>
