@@ -276,10 +276,9 @@ const ProjectsPage = ({ lang }: { lang: Language }) => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <motion.div
+            <div
               key={project.id}
-              whileTap={{ scale: 0.96 }}
-              className="apple-card group flex flex-col sm:grid sm:grid-rows-2 aspect-auto sm:aspect-[4/5] overflow-hidden !bg-white !bg-none !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50"
+              className="apple-card group flex flex-col sm:grid sm:grid-rows-2 aspect-auto sm:aspect-[4/5] overflow-hidden !bg-white !bg-none !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50 transition-transform active:scale-[0.98]"
             >
               <div className="w-full aspect-[3/2] sm:aspect-auto h-auto sm:h-full overflow-hidden bg-[#e5eee3] shrink-0">
                 <img
@@ -305,7 +304,7 @@ const ProjectsPage = ({ lang }: { lang: Language }) => {
                   <ArrowRight className="ml-1.5 w-4 h-4 transition-transform group-hover/link:translate-x-1" strokeWidth={1.5} />
                 </a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -457,10 +456,9 @@ const InsightsPage = ({ lang }: { lang: Language }) => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <motion.div
+            <div
               key={post.id}
-              whileTap={{ scale: 0.96 }}
-              className="apple-card p-8 group cursor-pointer flex flex-col h-full !bg-white !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50"
+              className="apple-card p-8 group cursor-pointer flex flex-col h-full !bg-white !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50 transition-transform active:scale-[0.98]"
             >
               <div className="mb-6">
                 <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", post.color)}>
@@ -477,7 +475,7 @@ const InsightsPage = ({ lang }: { lang: Language }) => {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">{post.date}</span>
                 <ArrowRight size={18} className="text-black/20 group-hover:text-black transition-all group-hover:translate-x-1" />
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -611,10 +609,13 @@ const Projects = ({ lang }: { lang: Language }) => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <motion.div
+            <div
               key={project.id}
-              whileTap={{ scale: 0.96 }}
-              className="apple-card group cursor-pointer flex flex-col sm:grid sm:grid-rows-2 aspect-auto sm:aspect-[4/5] overflow-hidden !bg-white !bg-none !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50"
+              onClick={() => {
+                navigate(`/projects`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="apple-card group cursor-pointer flex flex-col sm:grid sm:grid-rows-2 aspect-auto sm:aspect-[4/5] overflow-hidden !bg-white !bg-none !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50 transition-transform active:scale-[0.98]"
             >
               <div className="w-full aspect-[3/2] sm:aspect-auto h-auto sm:h-full overflow-hidden bg-[#e5eee3] shrink-0">
                 <img
@@ -635,7 +636,7 @@ const Projects = ({ lang }: { lang: Language }) => {
                   <ArrowRight className="ml-1.5 w-4 h-4 transition-transform group-hover/link:translate-x-1" strokeWidth={1.5} />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -691,10 +692,13 @@ const LatestInsights = ({ lang }: { lang: Language }) => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {posts.map((post, idx) => (
-            <motion.div
+            <div
               key={post.id}
-              whileTap={{ scale: 0.96 }}
-              className="apple-card p-8 group cursor-pointer flex flex-col"
+              onClick={() => {
+                navigate(`/insights`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="apple-card p-8 group cursor-pointer flex flex-col transition-transform active:scale-[0.98] border border-black/[0.05] hover:border-black/10 hover:shadow-xl hover:shadow-black/5 rounded-3xl"
             >
               <div className="mb-6">
                 <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", post.color)}>
@@ -711,7 +715,7 @@ const LatestInsights = ({ lang }: { lang: Language }) => {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">{post.date}</span>
                 <ArrowRight size={18} className="text-black/20 group-hover:text-black transition-all group-hover:translate-x-1" />
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

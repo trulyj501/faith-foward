@@ -1,7 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'motion/react';
 import { getContentByCategory } from '../lib/content';
 
 const ContentList = ({ lang }: { lang: 'ko' | 'en' }) => {
@@ -39,11 +38,8 @@ const ContentList = ({ lang }: { lang: 'ko' | 'en' }) => {
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {content.map((item) => (
-                            <motion.div
+                            <div
                                 key={item.slug}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
                                 className="group cursor-pointer bg-white border border-black/5 hover:border-black/10 rounded-3xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 flex flex-col h-full"
                             >
                                 <div className="mb-6 flex items-center justify-between">
@@ -71,7 +67,7 @@ const ContentList = ({ lang }: { lang: 'ko' | 'en' }) => {
                                     </span>
                                     <ArrowRight size={18} className="text-black/20 group-hover:text-black transition-all group-hover:translate-x-1" />
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 )}
