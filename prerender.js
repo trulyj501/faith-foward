@@ -29,7 +29,7 @@ function getMarkdownFiles(dir) {
 const routes = ['/', '/vision', '/projects', '/insights'];
 
 // Add routes for content collections
-const contentDirs = ['experiments', 'projects', 'essays'];
+const contentDirs = ['experiments', 'projects', 'insights'];
 contentDirs.forEach(dir => {
     const fullPath = toAbsolute(`content/${dir}`);
     if (fs.existsSync(fullPath)) {

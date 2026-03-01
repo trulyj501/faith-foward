@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom'
 import { cn } from './lib/utils';
 import ContentList from './pages/ContentList';
 import ContentDetail from './pages/ContentDetail';
+import { getContentByCategory } from './lib/content';
 
 // --- Constants & Data ---
 
@@ -51,38 +52,7 @@ const PROJECTS_DATA = (lang: Language) => [
   }
 ];
 
-const INSIGHTS_DATA = (lang: Language) => [
-  {
-    id: 1,
-    category: lang === 'ko' ? '리더십' : 'Leadership',
-    title: lang === 'ko' ? '디지털 시대의 사회적 협동조합 리더십' : 'Social Cooperative Leadership in the Digital Age',
-    date: 'Feb 24, 2026',
-    excerpt: lang === 'ko'
-      ? '급변하는 기술 환경에서 신앙 기반의 가치가 어떻게 리더십 결정을 이끌 수 있는지 탐구합니다.'
-      : 'Exploring how faith-based values can guide leadership decisions in rapidly evolving tech landscapes.',
-    color: 'text-emerald-600 bg-emerald-50/50'
-  },
-  {
-    id: 2,
-    category: lang === 'ko' ? '개발 로그' : 'Dev Log',
-    title: lang === 'ko' ? '확장성을 위한 구축: Next.js와 Supabase 통합' : 'Building for Scale: Next.js and Supabase Integration',
-    date: 'Feb 20, 2026',
-    excerpt: lang === 'ko'
-      ? 'QOTD 앱을 위한 아키텍처 선택과 99.9% 업타임을 보장하는 방법에 대한 기술적 심층 분석입니다.'
-      : 'A technical deep dive into our architecture choices for the QOTD app and how we ensure 99.9% uptime.',
-    color: 'text-indigo-600 bg-indigo-50/50'
-  },
-  {
-    id: 3,
-    category: lang === 'ko' ? '인사이트' : 'Insights',
-    title: lang === 'ko' ? 'AI와 영성 묵상의 교차점' : 'The Intersection of AI and Spiritual Meditation',
-    date: 'Feb 15, 2026',
-    excerpt: lang === 'ko'
-      ? '생성형 AI가 기독교 명상과 예술에서 어떻게 새로운 창의적 표현의 문을 열고 있는지 알아봅니다.'
-      : 'How generative AI is opening new doors for creative expression in Christian meditation and art.',
-    color: 'text-amber-600 bg-amber-50/50'
-  }
-];
+
 
 // --- Components ---
 
@@ -402,7 +372,8 @@ const VisionPage = ({ lang }: { lang: Language }) => {
 };
 
 const InsightsPage = ({ lang }: { lang: Language }) => {
-  const posts = INSIGHTS_DATA(lang);
+  const posts = getContentByCategory('insights');
+  const navigate = useNavigate();
 
   return (
     <div
@@ -432,12 +403,16 @@ const InsightsPage = ({ lang }: { lang: Language }) => {
         <div className="grid md:grid-cols-3 gap-8">
           {posts.map((post) => (
             <div
-              key={post.id}
+              key={post.slug}
+              onClick={() => {
+                navigate(`/insights/${post.slug}`);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="apple-card p-8 group cursor-pointer flex flex-col h-full !bg-white !rounded-[1.25rem] shadow-[0px_4px_16px_rgba(17,17,26,0.05),_0px_8px_32px_rgba(17,17,26,0.05)] border border-slate-100/50 transition-transform active:scale-[0.98] transform-gpu"
             >
               <div className="mb-6">
-                <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", post.color)}>
-                  {post.category}
+                <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", (post as any).color || 'bg-black/5 text-black/60')}>
+                  {(post as any).label || post.category}
                 </span>
               </div>
               <h3 className="text-xl font-sans font-bold mb-4 group-hover:text-emerald-600 transition-colors leading-tight tracking-tight text-[#1D1D1F]">
@@ -447,7 +422,9 @@ const InsightsPage = ({ lang }: { lang: Language }) => {
                 {post.excerpt}
               </p>
               <div className="pt-6 border-t border-black/[0.05] flex items-center justify-between mt-auto">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">{post.date}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">
+                  {post.publishedDate ? new Date(post.publishedDate).toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+                </span>
                 <ArrowRight size={18} className="text-black/20 group-hover:text-black transition-all group-hover:translate-x-1" />
               </div>
             </div>
@@ -590,7 +567,7 @@ const Projects = ({ lang }: { lang: Language }) => {
 };
 
 const LatestInsights = ({ lang }: { lang: Language }) => {
-  const posts = INSIGHTS_DATA(lang);
+  const posts = getContentByCategory('insights').slice(0, 3);
   const navigate = useNavigate();
 
   return (
@@ -626,18 +603,18 @@ const LatestInsights = ({ lang }: { lang: Language }) => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
+          {posts.map((post) => (
             <div
-              key={post.id}
+              key={post.slug}
               onClick={() => {
-                navigate(`/insights`);
+                navigate(`/insights/${post.slug}`);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="apple-card p-8 group cursor-pointer flex flex-col transition-transform active:scale-[0.98] transform-gpu border border-black/[0.05] hover:border-black/10 hover:shadow-xl hover:shadow-black/5 rounded-3xl"
             >
               <div className="mb-6">
-                <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", post.color)}>
-                  {post.category}
+                <span className={cn("px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest", (post as any).color || 'bg-black/5 text-black/60')}>
+                  {(post as any).label || post.category}
                 </span>
               </div>
               <h3 className="text-xl font-sans font-bold mb-4 group-hover:text-emerald-600 transition-colors leading-tight tracking-tight text-[#1D1D1F]">
@@ -647,7 +624,9 @@ const LatestInsights = ({ lang }: { lang: Language }) => {
                 {post.excerpt}
               </p>
               <div className="pt-6 border-t border-black/[0.05] flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">{post.date}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-black/20">
+                  {post.publishedDate ? new Date(post.publishedDate).toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+                </span>
                 <ArrowRight size={18} className="text-black/20 group-hover:text-black transition-all group-hover:translate-x-1" />
               </div>
             </div>
