@@ -380,8 +380,8 @@ const InsightsPage = () => {
 
   return (
     <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto space-y-12">
-        <div className="border-b border-black/10 pb-8 text-center md:text-left">
+      <div className="max-w-4xl mx-auto space-y-16">
+        <div className="border-b border-black/10 pb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
             인사이트
           </h1>
@@ -389,7 +389,7 @@ const InsightsPage = () => {
         </div>
 
         {/* Categories / Tags Filtering */}
-        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-8">
+        <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
           {tags.map(tag => (
             <button
               key={tag}
@@ -496,8 +496,8 @@ const PromptsPage = () => {
 
   return (
     <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto space-y-12">
-        <div className="border-b border-black/10 pb-8 text-center md:text-left">
+      <div className="max-w-4xl mx-auto space-y-16">
+        <div className="border-b border-black/10 pb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
             프롬프트
           </h1>
@@ -505,7 +505,7 @@ const PromptsPage = () => {
         </div>
 
         {/* Categories / Tags Filtering */}
-        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-8">
+        <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
           {tags.map(tag => (
             <button
               key={tag}
@@ -742,7 +742,7 @@ const Hero = () => {
           </h1>
 
 
-          <p className="text-xl md:text-2xl text-black/50 mb-14 max-w-2xl leading-[1.6] font-medium" style={{ letterSpacing: '-0.01em' }}>
+          <p className="text-[1.05rem] md:text-2xl text-black/50 mb-14 max-w-2xl leading-[1.6] font-medium" style={{ letterSpacing: '-0.01em' }}>
             <>
               무의미한 경쟁을 멈추고, 우리 삶에 정말 필요한<br />
               평화와 회복을 돕는 작지만 깊이 있는 도구를 만듭니다.
