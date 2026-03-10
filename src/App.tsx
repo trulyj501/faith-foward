@@ -430,14 +430,16 @@ const InsightsPage = () => {
                     <span className="text-xs md:text-sm font-mono text-gray-300 group-hover:text-emerald-500 transition-colors shrink-0 w-8">
                       {(post as any).globalID}
                     </span>
-                    <span className="text-base md:text-lg font-medium text-gray-700 group-hover:text-black group-hover:underline underline-offset-4 decoration-emerald-400/60 decoration-2 transition-all flex-grow">
-                      {post.title}
-                    </span>
-                    {(post as any).rating != null && (post as any).rating >= 4.5 && (
-                      <span className="shrink-0">
-                        <RecommendationBadge rating={(post as any).rating} size="sm" />
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 flex-grow">
+                      <span className="text-base md:text-lg font-medium text-gray-700 group-hover:text-black group-hover:underline underline-offset-4 decoration-emerald-400/60 decoration-2 transition-all">
+                        {post.title}
                       </span>
-                    )}
+                      {(post as any).rating != null && (post as any).rating >= 4.5 && (
+                        <span className="shrink-0 mt-0.5">
+                          <RecommendationBadge rating={(post as any).rating} size="sm" />
+                        </span>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>
