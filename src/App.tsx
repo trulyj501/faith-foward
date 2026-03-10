@@ -736,7 +736,7 @@ const Hero = () => {
         <div className="max-w-4xl">
           <h1
             className="font-sans font-bold text-[#1D1D1F] mb-8"
-            style={{ fontSize: 'clamp(2.75rem, 7vw, 5.5rem)', letterSpacing: '-0.05em', lineHeight: 1.15 }}
+            style={{ fontSize: 'clamp(1.8rem, 6.5vw, 5.5rem)', letterSpacing: '-0.05em', lineHeight: 1.15 }}
           >
             <>AI 기술이 세상을 위한<br /> <span className="text-emerald-600">선한 도구가 되도록.</span></>
           </h1>
@@ -1088,12 +1088,12 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="이메일 주소를 입력하세요"
-                  className="flex-grow bg-transparent border-none px-6 py-3.5 outline-none text-white placeholder:text-white/20 text-base disabled:opacity-50"
+                  className="flex-grow min-w-0 w-full bg-transparent border-none px-4 sm:px-6 py-3 sm:py-3.5 outline-none text-white placeholder:text-white/20 text-[15px] sm:text-base disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-[0.875rem] font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-50"
+                  className="bg-emerald-600 shrink-0 hover:bg-emerald-500 text-white px-5 sm:px-8 py-3 sm:py-3.5 rounded-[0.875rem] font-bold text-[13px] sm:text-sm transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap disabled:opacity-50"
                 >
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
