@@ -164,7 +164,7 @@ const ServicesPage = () => {
   }));
 
   return (
-    <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24">
+    <div className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24">
       <div className="max-w-4xl mx-auto space-y-16">
         <div className="border-b border-black/10 pb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
@@ -250,7 +250,7 @@ const VisionPage = () => {
   const navigate = useNavigate();
   return (
     <div
-      className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 relative overflow-hidden"
+      className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 relative overflow-hidden"
     >
       {/* Background orbs */}
       <div className="absolute inset-0 -z-10">
@@ -379,9 +379,9 @@ const InsightsPage = () => {
   }, {} as Record<string, typeof postsWithGlobalIndex>);
 
   return (
-    <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto space-y-16">
-        <div className="border-b border-black/10 pb-8">
+    <div className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
+      <div className="max-w-4xl mx-auto">
+        <div className="border-b border-black/10 pb-8 mb-6 md:mb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
             인사이트
           </h1>
@@ -389,7 +389,7 @@ const InsightsPage = () => {
         </div>
 
         {/* Categories / Tags Filtering */}
-        <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
+        <div className="flex flex-wrap items-center justify-start gap-2 mb-6 md:mb-8">
           {tags.map(tag => (
             <button
               key={tag}
@@ -430,16 +430,12 @@ const InsightsPage = () => {
                     <span className="text-xs md:text-sm font-mono text-gray-300 group-hover:text-emerald-500 transition-colors shrink-0 w-8">
                       {(post as any).globalID}
                     </span>
-                    <div className="flex flex-wrap items-center gap-2 md:gap-3 flex-grow">
-                      <span className="text-base md:text-lg font-medium text-gray-700 group-hover:text-black group-hover:underline underline-offset-4 decoration-emerald-400/60 decoration-2 transition-all">
-                        {post.title}
-                      </span>
+                    <span className="text-base md:text-lg font-medium text-gray-700 group-hover:text-black group-hover:underline underline-offset-4 decoration-emerald-400/60 decoration-2 transition-all flex-grow">
+                      {post.title}
                       {(post as any).rating != null && (post as any).rating >= 4.5 && (
-                        <span className="shrink-0 mt-0.5">
-                          <RecommendationBadge rating={(post as any).rating} size="sm" />
-                        </span>
+                        <Sparkles className="inline-block w-[1.125rem] h-[1.125rem] ml-1.5 text-emerald-500 fill-emerald-500/20 align-[-3px]" />
                       )}
-                    </div>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -497,9 +493,9 @@ const PromptsPage = () => {
   };
 
   return (
-    <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto space-y-16">
-        <div className="border-b border-black/10 pb-8">
+    <div className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-[80vh]">
+      <div className="max-w-4xl mx-auto">
+        <div className="border-b border-black/10 pb-8 mb-6 md:mb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
             프롬프트
           </h1>
@@ -507,7 +503,7 @@ const PromptsPage = () => {
         </div>
 
         {/* Categories / Tags Filtering */}
-        <div className="flex flex-wrap items-center justify-start gap-2 mb-8">
+        <div className="flex flex-wrap items-center justify-start gap-2 mb-6 md:mb-8">
           {tags.map(tag => (
             <button
               key={tag}
@@ -625,7 +621,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24">
+    <div className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24">
       <div className="max-w-4xl mx-auto">
         <div className="border-b border-black/10 pb-8 mb-16">
           <h1 className="text-4xl font-bold tracking-tight mb-2 text-[#1A1A1A]">
