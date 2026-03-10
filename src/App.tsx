@@ -530,7 +530,7 @@ const InsightsPage = () => {
                     <span className="text-base md:text-lg font-medium text-gray-700 group-hover:text-black group-hover:underline underline-offset-4 decoration-emerald-400/60 decoration-2 transition-all flex-grow">
                       {post.title}
                       {(post as any).rating != null && (post as any).rating >= 4.5 && (
-                        <Sparkles className="inline-block w-[1.125rem] h-[1.125rem] ml-1.5 text-emerald-500 fill-emerald-500/20 align-[-3px]" />
+                        <span className="inline-block ml-1.5 align-middle text-[1.125rem]" role="img" aria-label="추천">✨</span>
                       )}
                     </span>
                   </li>

@@ -63,7 +63,7 @@ const ContentList = () => {
     }, [items, currentCategory, tagFilter]);
 
     return (
-        <section className="section-padding min-h-screen bg-transparent">
+        <section className="pt-20 md:pt-40 pb-32 px-6 sm:px-10 md:px-16 lg:px-24 min-h-screen bg-transparent">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-[#E5E5E5] pb-8">
@@ -108,15 +108,13 @@ const ContentList = () => {
                                             onClick={() => { navigate(`/insights/${item.slug}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                             className="group cursor-pointer py-5 border-b border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6"
                                         >
-                                            <div className="flex items-center gap-3 flex-grow">
+                                            <div className="flex items-center flex-grow">
                                                 <h3 className="text-lg font-bold text-[#1D1D1F] group-hover:text-emerald-600 transition-colors" style={{ letterSpacing: '-0.02em', lineHeight: 1.4 }}>
                                                     {item.title}
+                                                    {(item as any).rating != null && (item as any).rating >= 4.5 && (
+                                                        <span className="inline-block ml-1.5 align-middle text-[1.125rem]" role="img" aria-label="추천">✨</span>
+                                                    )}
                                                 </h3>
-                                                {(item as any).rating != null && (item as any).rating >= 4.5 && (
-                                                    <div className="hidden sm:block">
-                                                        <RecommendationBadge rating={(item as any).rating} />
-                                                    </div>
-                                                )}
                                             </div>
                                             <span className="text-sm font-medium text-black/40 font-mono shrink-0">
                                                 {item.publishedDate ? new Date(item.publishedDate).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.$/, '') : ''}
@@ -201,6 +199,9 @@ const ContentList = () => {
 
                                         <h3 className="text-lg font-bold mb-3 group-hover:text-emerald-600 transition-colors text-[#1D1D1F]" style={{ letterSpacing: '-0.03em', lineHeight: 1.25 }}>
                                             {item.title}
+                                            {(item as any).rating != null && (item as any).rating >= 4.5 && (
+                                                <span className="inline-block ml-1.5 align-middle text-[1.125rem]" role="img" aria-label="추천">✨</span>
+                                            )}
                                         </h3>
                                         <p className="text-[#737373] text-sm mb-6 leading-[1.6] line-clamp-3 flex-grow">
                                             {item.excerpt}
@@ -210,10 +211,6 @@ const ContentList = () => {
                                                 {item.publishedDate ? new Date(item.publishedDate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
                                             </span>
                                             <div className="flex items-center gap-3">
-                                                {(item as any).rating != null && (
-                                                    <RecommendationBadge rating={(item as any).rating} />
-                                                )}
-
                                                 <ArrowRight size={16} strokeWidth={1.5} className="text-black/20 group-hover:text-emerald-600 transition-all duration-150 group-hover:translate-x-1" />
                                             </div>
                                         </div>
