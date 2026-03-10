@@ -426,7 +426,7 @@ const TagFilterList = ({ tags, activeTag, onTagClick }: { tags: string[], active
         ))}
         {/* Mock toggle button for measurement */}
         <button className="px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap bg-white border">
-          {hiddenCount > 0 ? `${hiddenCount}개 보기` : `${tags.length}개 보기`}
+          {hiddenCount > 0 ? `+${hiddenCount}` : `+${tags.length}`}
         </button>
       </div>
 
@@ -449,16 +449,16 @@ const TagFilterList = ({ tags, activeTag, onTagClick }: { tags: string[], active
         {!isExpanded && hiddenCount > 0 && (
           <button
             onClick={() => setIsExpanded(true)}
-            className="px-5 py-2.5 rounded-full text-sm font-bold bg-white text-emerald-600 border border-emerald-100/80 hover:bg-emerald-50 hover:border-emerald-200 transition-all duration-300 transform active:scale-95 whitespace-nowrap flex items-center justify-center shadow-sm"
+            className="px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform active:scale-95 whitespace-nowrap flex items-center justify-center bg-gray-100/80 text-gray-500 hover:bg-gray-200 hover:text-black hover:shadow-sm border border-transparent"
           >
-            {hiddenCount}개 보기
+            +{hiddenCount}
           </button>
         )}
 
         {isExpanded && hiddenCount > 0 && (
           <button
             onClick={() => setIsExpanded(false)}
-            className="px-5 py-2.5 rounded-full text-sm font-bold bg-white text-emerald-600 border border-emerald-100/80 hover:bg-emerald-50 hover:border-emerald-200 transition-all duration-300 transform active:scale-95 whitespace-nowrap flex items-center justify-center shadow-sm"
+            className="px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform active:scale-95 whitespace-nowrap flex items-center justify-center bg-gray-100/80 text-gray-500 hover:bg-gray-200 hover:text-black hover:shadow-sm border border-transparent"
           >
             접기 <ChevronDown size={14} className="ml-1 rotate-180" />
           </button>
