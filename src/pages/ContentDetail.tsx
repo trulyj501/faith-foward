@@ -225,7 +225,7 @@ const ContentDetail = () => {
                                                 복사
                                             </button>
                                         </div>
-                                        <div className="px-5 py-4 overflow-x-auto text-[14px] leading-[1.7] text-[#1F1F1F] font-mono whitespace-pre-wrap">
+                                        <div className="px-5 py-4 overflow-auto max-h-[400px] text-[14px] leading-[1.7] text-[#1F1F1F] font-mono whitespace-pre-wrap">
                                             {content}
                                         </div>
                                     </div>
